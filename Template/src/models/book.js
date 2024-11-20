@@ -8,11 +8,10 @@ export class Book {
     #authors;
 
     constructor(initialTitle, initialGenre, initialPages, initialAuthors) {
-
+      this.#authors = [];
       this.title = initialTitle;
       this.genre = initialGenre;
       this.pages = initialPages;
-      this.#authors = [];
       this.authors = initialAuthors;
 
     }
@@ -58,7 +57,7 @@ export class Book {
         throw new Error('This author name is not valid!');
       } if (!value.includes(',')) {
         if (value.split(' ').join('').length >= 1 && value.split(' ').join('').length <= 40) {
-          this.#authors.push((Array.from(value).map(e => e.trim())).join(' '));
+          this.#authors.push(value.trim());
         } else {
           throw new Error('This author name is not valid!');
         }

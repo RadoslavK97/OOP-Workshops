@@ -22,7 +22,7 @@ export class Library {
         return `No books added`;
       }
       return Object.keys(this._shelves)
-        .map(key => `== ${libraryShelf[key]} ==` + `\n` + `${this._shelves[key].map(v => `${v.title}, by ${v.authors}, ${v.pages} pages`)}` + `\n`).join(`\n`).trim();
+        .map(key => `  == ${libraryShelf[key]} ==` + `\n` + `${this._shelves[key].map(v => `${v.title}, by ${v.authors}, ${v.pages} pages`)}` + `\n`).join('\n');
     };
 }
 

@@ -9,8 +9,12 @@ export class Library {
 
     addBook(book, shelf) {
       if (Object.values(libraryShelf).includes(shelf)) {
-        this._shelves[shelf] = [];
-        this._shelves[shelf].push(book);
+        if (!this._shelves[shelf]) {
+          this._shelves[shelf] = [];
+          this._shelves[shelf].push(book);
+        } else {
+          this._shelves[shelf].push(book);
+        }
 
       } else {
         throw new Error('There is no such shelf in the library!');
@@ -23,7 +27,7 @@ export class Library {
       }
       return Object.keys(this._shelves)
         .map(key => `  == ${libraryShelf[key]} ==` + `\n` +
-        `${this._shelves[key].map(v => `${v.title}, by ${v.authors}, ${v.pages} pages`)}` + `\n`)
+        `${this._shelves[key].map(v => `${v.title}, by ${v.authors}, ${v.pages} pages`).join(`\n`)}` + `\n`)
         .join('\n');
     };
 }

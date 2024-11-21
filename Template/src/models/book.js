@@ -55,22 +55,10 @@ export class Book {
     set authors(value) {
       if (value === '') {
         throw new Error('This author name is not valid!');
-      } if (!value.includes(',')) {
-        if (value.split(' ').join('').length >= 1 && value.split(' ').join('').length <= 40) {
-          this.#authors.push(value.trim());
-        } else {
-          throw new Error('This author name is not valid!');
-        }
-      } if (value.includes(',')) {
-
-        if (value.split(',').every(e => e.length >= 0 && e.length <= 40)) {
-          this.#authors.push((value.split(',').filter(e => e !== ',' && e !== '')).map(el => el.trim()).join(','));
-        } else {
-          throw new Error('This author name is not valid!');
-        }
+      } if (value.split(',').every(e => e.length >= 0 && e.length <= 40) && typeof value === 'string') {
+        this.#authors.push((value.split(',').filter(e => e !== ',' && e !== '')).map(el => el.trim()).join(','));
+      } else {
+        throw new Error('This author name is not valid!');
       }
-
-
     }
-
 }
